@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+	{% block head_title %}Eliminar {{ producto.Medida_Diametro }}{% endblock %}
+	{% block content %}
+	{% load bootstrap3 %}
+	{% load crispy_forms_tags %}
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<form method="post">{% csrf_token %}
+				<h1>¿Estás seguro que deseas borrar el curso "{{ producto.nombre }} {{ producto.descripcion }}?"</h1>
+				<br>
+				<input type="submit" value="Borrar" class="btn btn-success" style="background-color: darkred; border-color: red;"/>
+			</form>
+		</div>
+	</div>
+	{% endblock %}

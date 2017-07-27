@@ -1,0 +1,25 @@
+
+	{% extends 'base.html' %}
+	<meta charset="UTF-8">
+	{% block head_title %}Agregar Producto{% endblock %}
+	{% block content %}
+	{% load bootstrap3 %}
+	{% load crispy_forms_tags %}
+	{% load i18n %}
+	{{ form.media }}
+	{% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<h1 align="center" style="color:white;">Agregar Producto</h1>
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{% bootstrap_form form %}
+				{% buttons %}
+				<button type="submit" class="btn btn-success" style="background-color: #338A11; border-color:#1bf10a;">Agregar</button>
+				{% endbuttons %}
+			</form>
+		</div>
+	</div>
+{% endblock %}

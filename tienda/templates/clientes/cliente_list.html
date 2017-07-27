@@ -1,0 +1,28 @@
+{% extends 'adminlte/base.html' %}
+	{% block title %}Lista de Clientes{% endblock %}
+	{% block content %}
+    	{% load bootstrap3 %}
+        <h1>Lista de Clientes</h1>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        <table class="table1">
+        <thead>
+            
+                <th>Id</th>
+                <th> </th>
+                <th>Razón Social</th>
+                <th> </th>
+                <th>Acciones</th>
+            
+        </thead>
+        {% for clientes in object_list %}
+            <tr>
+                <td align="center" style="vertical-align:middle">{{ clientes.id }}<td>
+                <td align="center" style="vertical-align:middle">{{ clientes.Razon_Social }}<td>
+                <td style="vertical-align:middle">{% buttons %}
+                    <a href="{% url "clientes:detail" clientes.id %}"><button type="submit" class="ui-button">{% bootstrap_icon "eye-open" %}Ver</button>
+                    </a><a href="{% url "clientes:delete" clientes.id %}"><button type="submit" class="ui-button">{% bootstrap_icon "erase" %}Borrar</button></a>{% endbuttons %}
+                </td>
+            </tr>
+        {% endfor %}
+{% endblock %}  

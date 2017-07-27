@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+	{% block head_title %}Lista de Ventas{% endblock %}
+	{% block content %}
+  {% load bootstrap3 %}
+	<script type="text/javascript">
+(function(document) {
+  'use strict';
+
+  var LightTableFilter = (function(Arr) {
+
+    var _input;
+
+    function _onInputEvent(e) {
+      _input = e.target;
+      var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+      Arr.forEach.call(tables, function(table) {
+        Arr.forEach.call(table.tBodies, function(tbody) {
+          Arr.forEach.call(tbody.rows, _filter);
+        });
+      });
+    }
+
+    function _filter(row) {
+      var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+      row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+    }
+
+    return {
+      init: function() {
+        var inputs = document.getElementsByClassName('light-table-filter');
+        Arr.forEach.call(inputs, function(input) {
+          input.oninput = _onInputEvent;
+        });
+      }
+    };
+  })(Array.prototype);
+
+  document.addEventListener('readystatechange', function() {
+    if (document.readyState === 'complete') {
+      LightTableFilter.init();
+    }
+  });
+
+})(document);
+</script>
+
+<style type="text/css">
+#cuadro{
+	width: 90%;
+	background: #F8F8F8 ;
+	padding: 25px;
+	margin: 5px auto;
+	border: 3px solid #D8D8D8;
+}
+
+#buscar{
+	width: 300px;
+	font-size: 22px;
+	color: #fff;
+	background: #383838 ;
+	padding-left: 20px ;
+	text-align: center;
+	border-radius: 5px;
+	padding: 10px;
+	margin:10px;
+}
+
+	</style>
+	<div class="row">
+		<div align="center">
+			<h1 style="color:white;">Lista de Ventas</h1>
+			{% load staticfiles %}
+			<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+			<div class="derecha" id="buscar">Buscar <input style="color:black;" type="search" class="light-table-filter" data-table="order-table" placeholder="Buscar"></div>
+			<table class="order-table table">
+				<thead>
+						<td align="center" style="vertical-align:middle"><h1 class="h4">Id</h1><td>
+						<td align="center" style="vertical-align:middle"><h1 class="h4">Producto</h1><td>
+						<td align="center" style="vertical-align:middle"><h1 class="h4">Cantidad vendida</h1><td>
+            <td align="center" style="vertical-align:middle"><h1 class="h4">Fecha</h1><td>
+				</thead>
+{{venta}}
+					{% for venta in playera %}
+					<tr>
+						<td align="center" style="vertical-align:middle">{{ venta.id }}<td>
+						<td align="center" style="vertical-align:middle">{{ venta.producto }}<td>
+						<td align="center" style="vertical-align:middle">{{ venta.cantidad_vendida }}<td>
+            <td align="center" style="vertical-align:middle">{{ venta.fecha }}<td>
+					</tr>
+        {% endfor %}
+
+				</table>
+				<form action="{% url "productos:pdfdia" %}" method="GET">
+					<label for="date">Selecciona Fecha para Consultar <input type="date" style="color:black;" name="date" id="date" required="required"></label>
+					<p><input type="submit" style="color:black;" value="Reporte por Fecha"></p>
+			</div>
+		</div>
+{% endblock %}

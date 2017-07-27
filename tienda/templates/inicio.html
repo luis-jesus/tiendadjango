@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block head_title %}Store{% endblock %}
+{% block jumbotron %}
+<div class="jumbotron">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1 style="color:white">Store</h1>
+				<p style="color:white">Esta es la Tipica tienda que te vende lo que buscas a precios accesibles cerca de tu hogar</p>
+					<a class="btn btn-lg btn-success" href="" role="button">Conócenos</a>
+				</p>
+			</div>
+
+			<div class="col-sm-6"><iframe width="560" height="315" src="https://www.youtube.com/embed/SV7Hg23gF-s" frameborder="0" allowfullscreen></iframe></div>
+		</div>
+	</div>
+</div>
+      {% endblock %}
+      <!-- <h1>Hello puto mundo</h1> -->
+<hr/>
+<br/>
+{% block content %}
+<div class="row">
+	<div class="col-sm-3 col-xs-12 pull-right">
+		<p class="lead text-align-center">
+		<span class="fa-stack fa-lg">
+			<i class="fa fa-spinner fa-spin fa-stack-2x"></i>
+			<i class="fa fa-whatsapp fa-stack-1x"></i>
+		</span></p>
+		</br>
+	</div>
+	<div class="col-sm-3">
+		<p class="lead text-align-center">Visión</br><i class="fa fa-code fa-3x" aria-hidden="true"></i></p>
+	</div>
+	<div class="col-sm-3">
+	<p class="lead text-align-center">Misión</p>
+	</div>
+	<div class="col-sm-3">
+	<p class="lead text-align-center">Valores</br><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></p>
+	</div>
+</div>
+{% endblock %}

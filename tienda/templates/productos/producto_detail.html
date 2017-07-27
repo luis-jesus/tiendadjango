@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+	{% block head_title %}Detalle del Producto{% endblock %}
+	<style>
+	body{
+		background-color: black!important;
+		color: white!important;
+	}
+	</style>
+	{% block content %}
+	{% load bootstrap3 %}
+	{% load staticfiles %}
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+			<h1 style="color:white;">Detalle</h1>
+			<h1 style="color:white;">Vendedor {% firstof request.user.get_short_name request.user.get_username %}</h1>
+			<h4 style="color:white;">Nombre: {{ producto.nombre }}</h1>
+			<h4 style="color:white;">Descripción: {{ producto.descripcion }}</h1>
+			<h4 style="color:white;">Categoria: {{ producto.categoria }}</h2>
+			<p>
+				Precio: ${{ producto.precio }}
+			</p>
+			<h4 style="color:white;">Comprar</h4>
+			<form method="post" class="form" style="color:black;">
+				{% csrf_token %}
+				<p>{{ forma.fecha }}</p>
+				<!-- <p>{{ forma.producto }}</p> -->
+				<p>{{ forma.cantidad_vendida}}</p>
+				<p><label for="number" style="color:white;">Total: <input style="color:black;" type="number" name="number" id="total1" value="0" readonly></label></p>
+	    <td><a href="{% url "productos:producto_list" %}"><input style="background-color: #E69005; border-color: #f5a309;" type="submit" value="Comprar" class="btn btn-success"/></a></td>
+	</form>
+<div align="left">
+		{% buttons %}
+
+			{% if request.user.is_superuser %}
+			<a href="{% url "productos:edit" producto.id %}"><button type="submit" class="btn btn-success" style="background-color: #338A11; border-color:#1bf10a;">Editar</button></a>
+			<a href="{% url "productos:producto_list" %}"><button type="submit" class="btn btn-success" style="background-color: #338A11; border-color:#1bf10a;">Regresar</button></a>
+			{% else %}
+			<a href="{% url "productos:producto_list" %}">
+				<button type="submit" class="btn btn-success">Regresar</button>
+			</a>
+			{% endif %}
+        {% endbuttons %}
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	    $('#id_cantidad_vendid').bind('input', function() {
+	        qty = $(this).val() // get the current value of the input field.
+	        document.getElementById("total1").value = ({{producto.precio}}*qty);
+	});
+	</script>
+{% endblock %}
+
+
+2017-03-17 15:06

@@ -1,0 +1,26 @@
+{% extends 'adminlte/base.html' %}
+	{% block title %}Detalle del Proveedor{% endblock %}
+	{% block content %}
+	{% load bootstrap3 %}
+	{% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	<h2>ID: {{ proveedor.id }}</h2>
+	<h1>Razón Social: {{ proveedor.Razon_Social }}</h1>
+	<h2>Contacto: {{ proveedor.Contacto }}</h2>
+	<h3>Telefono 1: {{ pr.Telefono_1 }}</h3>
+	<h3>Telefono 2: {{ cliente.Telefono_2 }}</h3>
+	<h3>Telefono 3: {{ cliente.Telefono_3 }}</h3>
+	<h4>Email: {{ cliente.Email }}</h4>
+	{% buttons %}
+		<a href="{% url "clientes:edit" cliente.id %}">
+			<button type="submit" class="ui-button">{% bootstrap_icon "pencil" %}Editar</button>
+		 </a>
+		<a href="{% url "clientes:list" %}">
+			<button type="submit" class="ui-button">{% bootstrap_icon "arrow-left" %}Regresar</button>
+		 </a>
+        {% endbuttons %}
+
+{% endblock %}
+
+
+2017-03-17 15:06

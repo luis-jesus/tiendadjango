@@ -1,0 +1,12 @@
+{% extends 'adminlte/base.html' %}
+	{% block title %}Eliminar {{ cliente.Razon_Social }}{% endblock %}
+	{% block content %}
+	{% load bootstrap3 %}
+	{% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+<form method="post">{% csrf_token %}
+    <h1>¿Estás seguro que deseas borrar el curso "{{ cliente.Razon_Social }}"?</h1>
+    <br>
+    <input type="submit" value="Borrar" />
+</form>
+	{% endblock %}

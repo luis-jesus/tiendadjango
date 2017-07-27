@@ -1,0 +1,32 @@
+
+	{% extends 'base.html' %}
+	<meta charset="UTF-8">
+	{% block head_title %}Vender{% endblock %}
+	{% block content %}
+	{% load bootstrap3 %}
+	{% load crispy_forms_tags %}
+	{% load i18n %}
+	{{ form.media }}
+	{% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<h1 align="center">Agregar Venta</h1>
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{% bootstrap_form form %}
+				{% buttons %}
+				<p><label for="number">Total: <input type="number" name="number" id="total1" value="0" readonly></label></p>
+				<button type="submit" class="btn btn-success">{% bootstrap_icon "plus" %}Agregar</button>
+				{% endbuttons %}
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+	    $('#id_cantidad_vendida').bind('input', function() {
+	        qty = $(this).val() // get the current value of the input field.
+	        document.getElementById("total1").value = (1*qty);
+	});
+	</script>
+{% endblock %}

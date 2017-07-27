@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+    <form method="post" action=".">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" value="{% trans 'Log in' %}" class="btn btn-success" style="background-color: #338A11; border-color:#1bf10a;"/>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+		<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+  </div>
+</div>
+
+
+{% endblock %}

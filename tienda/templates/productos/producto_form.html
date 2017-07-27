@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+	{% block head_title %}Agregar y Editar{% endblock %}
+	{% load bootstrap3 %}
+	{% load staticfiles %}
+	{% load crispy_forms_tags %}
+
+	{% block content %}
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+			<h1 style="color:white;">Agregar/Editar Producto</h1>
+			<form method="post">
+				{% csrf_token %}
+				{% bootstrap_form form %}
+				<input type="submit" value="Agregar/Editar" class="btn btn-success" style="background-color: #338A11; border-color:#1bf10a;"/>
+			</form>
+		</div>
+	</div>
+{% endblock %}

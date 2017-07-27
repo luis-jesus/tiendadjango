@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+  <meta charset="UTF-8">
+  {% block title %}Inicio{% endblock %}
+  {% block content %}
+  {% load bootstrap3 %}
+  {% load i18n %}
+  {% if request.user.is_authenticated %}
+                <h1 align="center">Bienvenido {% firstof request.user.get_short_name request.user.get_username %}</h1>
+                <br>
+                <h4 align="center">
+                  Nos encontramos en Colonia Centro C.P:16000 Calle Republica del Salvador CDMX
+                </h4>
+                <br>
+                <h4 align="center">
+                  Tu mejor opción en esta epoca donde la tecnología y pensando en un futuro chido!
+                </h4>
+                <br>
+                <br>
+                <div class="col-sm-12" align="center">
+                  <p class="lead text-align-center">Jimmy's Store<br><br><span class="fa-stack fa-5x">
+                    <i class="fa fa-circle-o-notch fa-stack-2x" style="color:yellow;"></i>
+                    <i class="fa fa-code fa-stack-1x" style="color:darkblue;"></i></span>
+                  </p>
+                </div>
+                {% else %}
+                <h1 align="center">Bienvenido de nuevo</h1>
+                <h2 align="center">Jimmy's Store</h2>
+                <div class="col-sm-12" align="center">
+                  <p class="lead text-align-center"><br><br><span class="fa-stack fa-5x">
+                    <i class="fa fa-circle-o-notch fa-stack-2x" style="color:yellow;"></i>
+                    <i class="fa fa-code fa-stack-1x" style="color:darkblue;"></i></span>
+                  </p>
+                </div>
+                {% endif %}
+{% endblock %}
